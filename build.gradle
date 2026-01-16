@@ -24,6 +24,9 @@ ext {
 dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault-secrets'
+	// HashiCorp Vault
+	implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
+	implementation 'org.springframework.vault:spring-vault-core'
 }
 
 dependencyManagement {
