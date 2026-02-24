@@ -5,12 +5,14 @@ import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
 import org.springframework.cloud.config.environment.Environment;
 import org.springframework.cloud.config.environment.PropertySource;
 import org.springframework.cloud.config.server.environment.EnvironmentRepository;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Order(2)
 public class AzureKeyVaultEnvironmentRepository implements EnvironmentRepository {
 
     private final SecretClient secretClient;

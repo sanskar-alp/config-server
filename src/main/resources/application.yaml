@@ -4,13 +4,26 @@ server:
 spring:
   application:
     name: config-server
+  main:
+    allow-bean-definition-overriding: true
   profiles:
-    active: git
+    active: git,vault
   cloud:
     config:
+      allowOverride: true
+      overrideNone: false
+      overrideSystemProperties: false
       server:
         git:
-          uri: https://github.com/sanskar-alp/config-repo
+          uri: ${GITHUB_URL:https://github.com/sanskar-alp/config-repo}
+        vault:
+          host: 127.0.0.1
+          port: 8200
+          scheme: http
+          backend: secret
+          kv-version: 2
+          authentication: token
+          token: ConfigServerToken
     azure:
       keyvault:
         secret:
@@ -20,6 +33,9 @@ spring:
         client-id: ${AZURE_CLIENT_ID}
         client-secret: ${AZURE_CLIENT_SECRET}
         tenant-id: ${AZURE_TENANT_ID}
+    vault:
+      enabled: true
+
 
 logging:
   level:
